@@ -165,7 +165,6 @@ function submit() {
                 </div>
 
                 <!-- Card Informativo -->
-                <!-- Card Informativo -->
                 <div class="bg-[#fff9ec] border-l-4 border-[#ffb300] rounded-xl p-6 shadow-lg h-fit">
                     <h3 class="text-xl font-bold text-[#00367e] mb-4">📝 Información Importante</h3>
                     <ul class="text-sm text-gray-800 space-y-3 list-disc list-inside mb-6">
@@ -193,7 +192,19 @@ function submit() {
                             <p><strong>CCI:</strong> 002-49510670399709106</p>
                         </div>
                     </div>
+
+                    <!-- Nota sobre el código de pago -->
+                    <div class="mt-6 bg-[#fff4d3] border-l-4 border-[#ffb300] p-4 rounded-md text-sm text-gray-800">
+                        <p class="flex items-start gap-2">
+                            <span class="text-xl">📌</span>
+                            <span>
+                                El <strong>código de pago</strong> corresponde al <strong>código de operación</strong>
+                                del Yapeo o de la transferencia bancaria.
+                            </span>
+                        </p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </AuditaLayout>
