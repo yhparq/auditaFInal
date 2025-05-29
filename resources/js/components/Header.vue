@@ -14,7 +14,7 @@
         <li><a href="/#tarifas" class="hover:text-[#ffb300]">Inversión</a></li>
         <li><a href="/#confe" class="hover:text-[#ffb300]">Conferencistas</a></li>
         <li><a href="/#temas" class="hover:text-[#ffb300]">Temario</a></li>
-        <li><a href="/#info" class="hover:text-[#ffb300]">Informacion</a></li>
+        <li><a href="/#info" class="hover:text-[#ffb300]">Información</a></li>
         <li><a href="/#contacto" class="hover:text-[#ffb300]">Contacto</a></li>
         <li>
           <a href="/login" class="bg-[#ffb300] text-[#00367e] px-4 py-2 rounded-md hover:bg-white transition">
@@ -32,7 +32,7 @@
         <li><a href="/#tarifas" class="hover:text-[#ffb300]">Inversión</a></li>
         <li><a href="/#confe" class="hover:text-[#ffb300]">Conferencistas</a></li>
         <li><a href="/#temas" class="hover:text-[#ffb300]">Temario</a></li>
-        <li><a href="/#info" class="hover:text-[#ffb300]">Informacion</a></li>
+        <li><a href="/#info" class="hover:text-[#ffb300]">Información</a></li>
         <li><a href="/#contacto" class="hover:text-[#ffb300]">Contacto</a></li>
         <li>
           <a href="/login" class="bg-[#ffb300] text-[#00367e] px-4 py-2 rounded-md hover:bg-white transition">

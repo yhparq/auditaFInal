@@ -22,7 +22,7 @@
 
                 <!-- Texto -->
                 <div class="text-left px-2">
-                    <h3 class="text-2xl font-bold text-[#00367e] mb-4">Puno te saluda!</h3>
+                    <h3 class="text-2xl font-bold text-[#00367e] mb-4">¡Puno te saluda!</h3>
                     <p class="text-gray-700 leading-relaxed">
                         El Colegio de Contadores Públicos de Puno y la Junta de Decanos de los Colegios de Contadores
                         del Perú - JDCCPP, invitan a los Contadores Públicos, profesionales, empresarios, estudiantes y
@@ -335,8 +335,8 @@
                     <div class="bg-[#ae1f22] text-white p-6 rounded shadow col-span-1">
                         <h3 class="text-lg font-semibold">Eje Temático</h3>
                         <h4 class="text-2xl font-bold">AUDITA 2025</h4>
-                        <p class="text-sm mt-2">Incluye materias modernas y de vanguardia para la profesión contable
-                            dentro del área de Auditoría.</p>
+                        <p class="text-sm mt-2">LA AUDITORÍA ILUMINA EL CAMINO HACIA LA TRANSPARENCIA Y LA INTEGRIDAD
+                            FINANCIERA, PREVINIENDO LA CORRUPCIÓN</p>
                     </div>
 
                     <!-- Temas -->
@@ -353,7 +353,7 @@
                                     REGULACIÓN Y ESTÁNDARES DE AUDITORÍA Y CALIDAD</p>
                                 <button @click="abrirModal(0)"
                                     class="mt-3 bg-[#ae1f22] hover:bg-[#00367e] text-white text-sm font-medium py-1 px-4 rounded transition">
-                                    Ver Ejes
+                                    Ver Temas
                                 </button>
 
 
@@ -368,7 +368,7 @@
                                     DIGITAL Y TECNOLOGÍAS DISRUPTIVAS EN AUDITORÍA</p>
                                 <button @click="abrirModal(1)"
                                     class="mt-3 bg-[#ae1f22] hover:bg-[#00367e] text-white text-sm font-medium py-1 px-4 rounded transition">
-                                    Ver Ejes
+                                    Ver Temas
                                 </button>
                             </div>
                             <div class="overflow-hidden rounded-lg">
@@ -389,7 +389,7 @@
                                     TRANSPARENCIA, GOBERNANZA Y AUDITORÍA DE SOSTENIBILIDAD</p>
                                 <button @click="abrirModal(2)"
                                     class="mt-3 bg-[#ae1f22] hover:bg-[#00367e] text-white text-sm font-medium py-1 px-4 rounded transition">
-                                    Ver Ejes
+                                    Ver Temas
                                 </button>
                             </div>
                         </div>
@@ -420,56 +420,61 @@
 
                                 <!-- Modal Tema 1 -->
                                 <div v-if="modalActivo === 0">
-                                    <DialogTitle class="text-2xl font-bold text-[#00367e] mb-4">Eje Temático Nº 1: Normativa
-                                        Internacional</DialogTitle>
+                                    <DialogTitle class="text-2xl font-bold uppercase text-[#00367e] mb-4">Eje Temático
+                                        Nº 1: NORMATIVA INTERNACIONAL, REGULACIÓN Y ESTÁNDARES DE AUDITORÍA Y CALIDAD
+                                    </DialogTitle>
                                     <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
                                         <li>Aplicación de las Normas Internacionales de Auditoría (NIA) y el
-                                            fortalecimiento del escepticismo profesional.</li>
+                                            fortalecimiento del escepticismo profesional. Normatividad y estándares
+                                            internacionales de auditoría.</li>
                                         <li>Implementación de las Normas Internacionales de Gestión de Calidad (NIGC 1 y
-                                            2) y promoción de una cultura de calidad en las firmas.</li>
-                                        <li>Implementación del Sistema de Control Interno en el Sector Público y Privado
-                                            (COSO 2013).</li>
-                                        <li>Norma de Competencia: Gestionar el Proceso de Auditoría Financiera en el
-                                            Sector Público y Privado.</li>
+                                            2) y la promoción de una cultura de calidad en las firmas.</li>
                                         <li>Manual del IAASB: principales cambios normativos y su aplicación en la
-                                            práctica profesional.</li>
+                                            práctica profesional. Norma de Competencia: Gestionar el Proceso de
+                                            Auditoría Financiera en los sectores público y privado.</li>
                                         <li>Rol del auditor interno frente al sistema PLAFT, la oficialía de
                                             cumplimiento y los delitos financieros.</li>
-                                        <li>Investigación aplicada en normatividad, ética y estándares internacionales
-                                            de auditoría.</li>
                                     </ul>
                                 </div>
 
                                 <!-- Modal Eje Temático 2 -->
                                 <div v-else-if="modalActivo === 1">
-                                    <DialogTitle class="text-2xl font-bold text-[#00367e] mb-4">Eje Temático Nº 2:
-                                        Transformación Digital</DialogTitle>
+                                    <DialogTitle class="text-2xl font-bold uppercase text-[#00367e] mb-4">Eje Temático
+                                        Nº 2:
+                                        INNOVACIÓN, TRANSFORMACIÓN DIGITAL Y TECNOLOGÍAS DISRUPTIVAS EN AUDITORÍA
+                                    </DialogTitle>
                                     <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
                                         <li>Aplicaciones prácticas de inteligencia artificial generativa, big data,
-                                            blockchain y ciberseguridad en auditoría.</li>
+                                            blockchain y ciberseguridad en auditoría. Automatización inteligente y
+                                            robotización de procesos de auditoría (RPA, plataformas digitales, software
+                                            especializado).</li>
                                         <li>Auditoría forense digital: Investigación de fraudes y delitos económicos con
-                                            tecnologías avanzadas. Rol de la UIF y cumplimiento del marco GAFI.</li>
-                                        <li>Automatización inteligente y robotización de procesos de auditoría (RPA,
-                                            software especializado).</li>
-                                        <li>Investigación aplicada en tecnologías emergentes y su impacto en la
-                                            auditoría del futuro.</li>
+                                            tecnologías avanzadas. Rol de la UIF y cumplimiento del marco GAFI en
+                                            auditoría: enfoque basado en riesgos y supervisión.</li>
+                                        <li>Innovación Tecnológica en la Auditoría: Un enfoque desde la investigación
+                                            científica. </li>
                                     </ul>
                                 </div>
 
                                 <!-- Modal Eje Temático 3 -->
                                 <div v-else-if="modalActivo === 2">
-                                    <DialogTitle class="text-2xl font-bold text-[#00367e] mb-4">Eje Temático Nº 3: Ética y
-                                        Sostenibilidad</DialogTitle>
+                                    <DialogTitle class="text-2xl font-bold uppercase text-[#00367e] mb-4">Eje Temático
+                                        Nº 3: ÉTICA PROFESIONAL, TRANSPARENCIA, GOBERNANZA Y AUDITORÍA DE SOSTENIBILIDAD
+                                    </DialogTitle>
                                     <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
                                         <li>Auditoría como herramienta de prevención y control de actos de corrupción:
-                                            enfoque en integridad institucional y gestión de riesgos regulatorios.</li>
-                                        <li>Ética profesional, independencia del auditor y salvaguardas frente a los
-                                            conflictos de interés.</li>
-                                        <li>Auditoría prospectiva: uso de inteligencia artificial y análisis predictivo
-                                            para la anticipación de riesgos. Información no financiera y sostenibilidad.
+                                            enfoque en integridad institucional. Gobierno corporativo, auditoría de
+                                            cumplimiento y gestión de riesgos regulatorios.</li>
+                                        <li>El control gubernamental y la corrupción en el Perú y América Latina.
+                                            Ética profesional, independencia del auditor y salvaguardas frente a los
+                                            conflictos de interés.
                                         </li>
-                                        <li>Cultura de la denuncia (whistleblowing), ética organizacional y canales de
-                                            integridad.</li>
+                                        <li>Auditoría de Sostenibilidad, cumplimiento ESG y reportes de información
+                                            financiera.
+                                        </li>
+                                        <li>Impacto del control interno en la gestión pública. El control preventivo,
+                                            simultáneo y posterior como instrumentos para prevenir los actos de
+                                            corrupción en el país.</li>
                                     </ul>
                                 </div>
 
@@ -917,10 +922,10 @@ const images = [
 
 const planes = [
     {
-        tipo: 'PLENO',
+        tipo: 'PARTICIPANTE PLENO',
         imagen: '/images/precio3.jpg',
         bg: 'bg-[#ae1f22]',
-        descripcion: 'Contadores Públicos inscritos en su Colegio. Participan con voto y voz.',
+        descripcion: 'Contadores Públicos que están inscritos en su respectivo Colegio Departamental. Participan con todos los derechos y obligaciones.',
         presencial: {
             hasta30junio: 315,
             desde01julio: 350,
@@ -948,13 +953,13 @@ const planes = [
                 'Certificado',
             ],
         },
-        descuento: 'Ahorra hasta S/ 35 hasta el 30 de junio',
+        descuento: '10% de descuento hasta el 30 de junio',
     },
     {
-        tipo: 'OBSERVADOR',
+        tipo: 'PARTICIPANTE OBSERVADOR',
         imagen: '/images/precio1.jpg',
         bg: 'bg-[#00367e]',
-        descripcion: 'Empresarios, profesionales y egresados. Participan con voz, sin voto.',
+        descripcion: 'Empresarios, profesionales de otras ramas del conocimiento, así como los bachilleres, egresados y otras personas interesadas.',
         presencial: {
             hasta30junio: 270,
             desde01julio: 300,
@@ -980,13 +985,13 @@ const planes = [
                 'Certificado',
             ],
         },
-        descuento: 'Ahorra hasta S/ 30 hasta el 30 de junio',
+        descuento: '10% de descuento hasta el 30 de junio',
     },
     {
-        tipo: 'ESTUDIANTE',
+        tipo: 'PARTICIPANTE ESTUDIANTE',
         imagen: '/images/precio2.jpg',
         bg: 'bg-[#ffb300]',
-        descripcion: 'Estudiantes de nivel superior en Ciencias Contables y afines.',
+        descripcion: 'Estudiantes que se encuentren cursando estudios de nivel superior en Ciencias Contables y afines.',
         presencial: {
             hasta30junio: 90,
             desde01julio: 100,
@@ -1011,7 +1016,7 @@ const planes = [
                 'Certificado',
             ],
         },
-        descuento: 'Ahorra hasta S/ 15 hasta el 30 de junio',
+        descuento: '10% de descuento hasta el 30 de junio',
     },
 ]
 
@@ -1091,6 +1096,7 @@ const logos = [
     '/images/logo6.png',
     '/images/logo.png',
     '/images/logo2.png',
+    '/images/logo7.png',
     // '/images/logo4.png',
     '/images/logo3.png',
     '/images/logo5.png',

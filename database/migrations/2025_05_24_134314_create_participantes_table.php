@@ -16,11 +16,16 @@ return new class extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->string('dni', 8)->unique();
+            $table->string('correo')->unique();
+            $table->string('celular');
+            $table->string('colegio_departamental')->nullable();
             $table->string('departamento');
             $table->string('provincia');
             $table->string('distrito');
             $table->text('direccion_actual')->nullable();
             $table->enum('tipo_participante', ['individual', 'corporativo']);
+            $table->enum('tipo_participante_categoria', ['pleno', 'observador', 'estudiante']);
+            $table->enum('modalidad_participacion', ['presencial', 'virtual']);
             $table->string('nombre_corporativo')->nullable();
             $table->string('codigo_pago');
             $table->string('foto_voucher')->nullable();

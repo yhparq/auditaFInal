@@ -1,5 +1,8 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+const page = usePage()
+const successMessage = ref(page.props.flash?.success || null)
+
 import axios from 'axios';
 
 const props = defineProps({ admin: Boolean });
@@ -34,24 +37,47 @@ function submit() {
 }
 
 async function buscarDni() {
-  if (form.dni.length === 8) {
-    try {
-      const res = await axios.get(`/api/dni/${form.dni}`);
-      form.nombres = res.data.data.nombres;
-      form.apellidos = `${res.data.data.apellido_paterno} ${res.data.data.apellido_materno}`;
-    } catch (err) {
-      form.nombres = '';
-      form.apellidos = '';
-      alert('DNI no encontrado');
+    if (form.dni.length === 8) {
+        try {
+            const res = await axios.get(`/api/dni/${form.dni}`);
+            form.nombres = res.data.data.nombres;
+            form.apellidos = `${res.data.data.apellido_paterno} ${res.data.data.apellido_materno}`;
+        } catch (err) {
+            form.nombres = '';
+            form.apellidos = '';
+            alert('DNI no encontrado');
+        }
     }
-  }
 }
 
 
+watchEffect(() => {
+    if (successMessage.value) {
+        setTimeout(() => {
+            successMessage.value = null
+        }, 4000)
+    }
+})
 
 </script>
 
 <template>
+
+    <!-- Mensaje de éxito -->
+    <div v-if="successMessage"
+        class="fixed top-6 right-6 z-50 bg-emerald-50 border border-emerald-200 text-emerald-800 px-6 py-4 rounded-xl shadow-xl backdrop-blur-sm">
+        <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+                <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
+                </svg>
+            </div>
+            <span class="font-medium">{{ successMessage }}</span>
+        </div>
+    </div>
+
     <div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
         <div class="w-full max-w-3xl bg-white dark:bg-gray-800 p-8 rounded-lg shadow">
             <h1 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
@@ -64,7 +90,8 @@ async function buscarDni() {
                 <!-- DNI -->
                 <div>
                     <label class="block text-sm text-gray-700 dark:text-gray-200">DNI</label>
-                    <input v-model="form.dni" @blur="() => buscarDni(index)" type="text" maxlength="8" minlength="8" required
+                    <input v-model="form.dni" @blur="() => buscarDni(index)" type="text" maxlength="8" minlength="8"
+                        required
                         class="w-full mt-1 p-2 border rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white" />
                 </div>
 

@@ -31,7 +31,7 @@
         </style>
 
         {{-- <title inertia>{{ config('app.name', 'audita2025') }}</title> --}}
-        <title>Audita 2025</title>
+        <title>Audita 2025 - Puno</title>
 
         <link rel="icon" href="/images/logo1.png" sizes="any">
         <link rel="icon" href="/images/logo1.png" type="image/svg+xml">
