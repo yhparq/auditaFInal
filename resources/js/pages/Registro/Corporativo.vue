@@ -212,13 +212,13 @@ function submit() {
                                         
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div class="space-y-2">
-                                                <label class="block text-sm font-medium text-slate-700">Nombre del Corporativo *</label>
+                                                <label class="block text-sm font-medium text-slate-700">Razón Social ó Institución</label>
                                                 <input v-model="form.nombre_corporativo" required
                                                     class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-slate-900"
                                                     placeholder="Nombre de la empresa u organización" />
                                             </div>
                                             <div class="space-y-2">
-                                                <label class="block text-sm font-medium text-slate-700">Foto del Voucher <span class="text-slate-500">(Opcional)</span></label>
+                                                <label class="block text-sm font-medium text-slate-700">Foto del Voucher <span class="text-slate-500"></span></label>
                                                 <input type="file" @change="handleGlobalFile" accept="image/*"
                                                     class="w-full px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors text-slate-900 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
                                             </div>
