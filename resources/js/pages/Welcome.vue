@@ -466,7 +466,8 @@
                                             enfoque en integridad institucional. Gobierno corporativo, auditoría de
                                             cumplimiento y gestión de riesgos regulatorios.</li>
                                         <li>El control gubernamental y la corrupción en el Perú y América Latina.
-                                            Ética profesional, independencia del auditor y salvaguardas frente a los
+                                        </li>
+                                        <li>Ética profesional, independencia del auditor y salvaguardas frente a los
                                             conflictos de interés.
                                         </li>
                                         <li>Auditoría de Sostenibilidad, cumplimiento ESG y reportes de información

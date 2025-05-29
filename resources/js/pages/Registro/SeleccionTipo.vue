@@ -65,9 +65,6 @@ function seleccionar(tipo) {
                                     </svg>
                                 </div>
                                 <h3 class="text-2xl sm:text-3xl font-bold text-[#00367e] mb-4">Inscripción Individual</h3>
-                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
-                                    Perfecto para profesionales independientes que buscan actualizar sus conocimientos y networking personalizado.
-                                </p>
                             </div>
                             
                             <div class="space-y-4 mb-8">
@@ -77,12 +74,12 @@ function seleccionar(tipo) {
                                     </svg>
                                     Registro rápido y sencillo
                                 </div>
-                                <div class="flex items-center text-slate-700">
+                                <!-- <div class="flex items-center text-slate-700">
                                     <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
                                     Certificado personalizado
-                                </div>
+                                </div> -->
                                 <div class="flex items-center text-slate-700">
                                     <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
@@ -110,9 +107,6 @@ function seleccionar(tipo) {
                                     </svg>
                                 </div>
                                 <h3 class="text-2xl sm:text-3xl font-bold text-[#00367e] mb-4">Inscripción Corporativa</h3>
-                                <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
-                                    Ideal para empresas que desean capacitar a múltiples colaboradores con descuentos especiales.
-                                </p>
                             </div>
                             
                             <div class="space-y-4 mb-8">
@@ -126,13 +120,13 @@ function seleccionar(tipo) {
                                     <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
-                                    Tarifas corporativas especiales
+                                    Rápido y Sencillo
                                 </div>
                                 <div class="flex items-center text-slate-700">
                                     <svg class="w-5 h-5 text-emerald-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                                     </svg>
-                                    Gestión centralizada de pagos
+                                    Acceso completo al evento 
                                 </div>
                             </div>
                             
