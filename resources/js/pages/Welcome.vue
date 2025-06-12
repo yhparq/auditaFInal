@@ -28,7 +28,7 @@
                         del Perú - JDCCPP, invitan a los Contadores Públicos, profesionales, empresarios, estudiantes y
                         ciudadanía, regional y nacional, a participar en la <span
                             class="font-semibold text-[#00367e]">“XI Convención Nacional de Auditoría – AUDITA
-                            2025”</span>, a realizarse los días 26, 27 y 28 de julio de 2025.
+                            2025”</span>, a realizarse los días 24, 25 y 26 de julio de 2025.
                     </p>
                 </div>
             </div>
@@ -566,10 +566,10 @@
 
                         <p class="text-sm text-gray-600 mt-6">
                             Ver más detalle en el
-                            <a href="/pdfs/reglamento-audita2025.pdf" class="text-blue-600 hover:underline"
+                            <a href="/pdfs/reglamento.pdf" class="text-blue-600 hover:underline"
                                 target="_blank">Reglamento de Audita 2025</a>
                             y en el
-                            <a href="/pdfs/reglamento-investigacion.pdf" class="text-blue-600 hover:underline"
+                            <a href="/pdfs/reglamento-investigacion-audita2025.pdf" class="text-blue-600 hover:underline"
                                 target="_blank">Reglamento de Trabajos de Investigación</a>.
                         </p>
 
@@ -1038,7 +1038,7 @@ function toggleCard(tipo: string) {
 const documentos = [{
     titulo: 'Reglamento AUDITA 2025',
     imagen: '/images/002.png',
-    pdf: '/pdfs/reglamento-audita2025.pdf',
+    pdf: '/pdfs/reglamento.pdf',
 },
 {
     titulo: 'Reglamento Trabajos de Investigación',
