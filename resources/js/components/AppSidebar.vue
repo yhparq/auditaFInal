@@ -26,13 +26,8 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Galeria de Fotos',
-        href: '#',
+        href: '/photos',
         icon: BookImage,
-    },
-    {
-        title: 'Galeria Videos',
-        href: '#',
-        icon: Camera,
     },
     {
         title: 'Jueves 24 de Julio',

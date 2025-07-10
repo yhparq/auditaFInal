@@ -16,7 +16,7 @@
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <!-- Video -->
                 <div class="aspect-video w-full">
-                    <iframe class="w-full h-full rounded-lg shadow-md" src="https://www.youtube.com/embed/Ebme3gCsjXw"
+                    <iframe class="w-full h-full rounded-lg shadow-md" src="https://www.youtube.com/embed/jTkLEFU8GGs"
                         title="Video Audita" frameborder="0" allowfullscreen></iframe>
                 </div>
 
@@ -55,7 +55,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
                 <div v-for="item in items" :key="item.title" class="text-center group">
-                    <a :href="item.pdf" download target="_blank" class="block hover:scale-105 transition duration-300">
+                    <a :href="item.pdf" target="_blank" class="block hover:scale-105 transition duration-300">
                         <img :src="item.image" alt="preview" class="w-full h-auto rounded-lg shadow-md" />
                     </a>
                     <div class="mt-4">
@@ -546,7 +546,7 @@
                 <div class="mt-10 flex flex-col md:flex-row items-center justify-center gap-10">
                     <!-- Imagen -->
                     <div class="w-full max-w-xl px-4">
-                        <img src="/images/baner1.png" alt="Reglamento"
+                        <img src="/images/banner1.png" alt="Reglamento"
                             class="rounded shadow w-full h-auto transform transition duration-500 hover:scale-105" />
                     </div>
                     <!-- Info -->
@@ -741,7 +741,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Destinos Turísticos -->
-                <a href="https://drive.google.com/file/d/DESTINOS_ID" target="_blank"
+                <a href="pdfs/jumbo_travel.pdf" target="_blank"
                     class="bg-white hover:bg-[#fffbf1] border border-[#ffb300] text-[#00367e] p-6 rounded-xl shadow-md hover:shadow-lg transition flex items-center gap-4">
                     <div class="text-4xl">🗺️</div>
                     <div>
@@ -898,13 +898,13 @@ interface Item {
 const items: Item[] = [{
     title: 'Conoce AUDITA 2025',
     image: '/images/003.png',
-    pdf: '/pdfs/que-es-audita.pdf',
+    pdf: '/pdfs/conoce_audita.pdf',
 },
 
 {
     title: 'Programa AUDITA 2025',
     image: '/images/005.png',
-    pdf: '/pdfs/programa-audita.pdf',
+    pdf: '/pdfs/programa_oficial.pdf',
 },
 ]
 
@@ -940,7 +940,6 @@ const planes = [
                 'Jueves 24: Noche Puneña',
                 'Viernes 25: Copa Titikaka',
                 'Sábado 26: Almuerzo de Confraternidad',
-                'Domingo 27: Tour Turístico',
                 'Acceso a Aula Virtual y la información completa',
                 'Certificado',
             ],
@@ -1101,6 +1100,12 @@ const logos = [
     // '/images/logo4.png',
     '/images/logo3.png',
     '/images/logo5.png',
+    '/images/logo8.jpeg',
+    '/images/logo9.png',
+    '/images/logo10.jpeg',
+    '/images/logo11.png',
+    '/images/logo12.jpg',
+    '/images/logo13.jpg',
 ]
 
 

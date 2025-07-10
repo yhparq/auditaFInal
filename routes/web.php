@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ParticipanteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DniController;
+use App\Http\Controllers\PhotoController;
 use Inertia\Inertia;
 
 // ========================================
@@ -16,6 +18,13 @@ Route::get('/', function () {
 // ========================================
 // RUTAS DE REGISTRO (PÚBLICAS)
 // ========================================
+
+Route::get('/galeria', [PhotoController::class, 'publicIndex'])->name('gallery.index');
+Route::get('/galeria/{photo}', [PhotoController::class, 'publicShow'])->name('gallery.show');
+
+Route::get('/aula-virtual', [CursoController::class, 'aulaVirtual'])->name('aula-virtual');
+Route::get('/aula-virtual/{curso}', [CursoController::class, 'mostrarCurso'])->name('aula-virtual.curso');
+
 
 // GET - Páginas de registro
 Route::get('/registro', fn () => Inertia::render('Registro/SeleccionTipo'))->name('registro.seleccion');
@@ -48,6 +57,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Participantes corporativos
     Route::get('/participantes/corporativos', [ParticipanteController::class, 'indexCoporativos'])->name('participantes.corporativos');
+
+    Route::resource('/photos', PhotoController::class);
+    Route::resource('cursos', CursoController::class);
+
 });
 
 // ========================================

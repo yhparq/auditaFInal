@@ -53,13 +53,89 @@ interface Expositor {
 
 const expositores: Expositor[] = [
     {
-        nombre: '----',
-        cargo: 'Profesor Investigador',
-        foto: '/images/expo1.jpg',
-        perfil: 'https://buscador.concytec.gob.pe/buscador/autor/luis-alarcon-paredes',
+        nombre: 'Mg. CPC. Luis Pretel Gaona',
+        cargo: 'Socio de auditoría DELOITTE',
+        foto: '/images/ponentes/luis_petrel.png',
+        perfil: '/pdfs/datos_ponentes/01.LUIS_PRETEL.png',
         bandera: '/images/peru.png'
     },
-
+    {
+        nombre: 'Mg. CPC. Alex Cuzcano Cuzcano',
+        cargo: 'Socio director de auditoría y asesoría contable en Global CPA Consultores',
+        foto: '/images/ponentes/alex_cuzcano.png',
+        perfil: '/pdfs/datos_ponentes/02.ALEX CUZCANO.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'CPC. Eduardo Alejos Palomino',
+        cargo: 'Socio de Auditoría KPMG',
+        foto: '/images/ponentes/eduardo_alejos.png',
+        perfil: '/pdfs/datos_ponentes/03.EDUARDO ALEJOS.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'Mg. Pablo Gabriel Fudim',
+        cargo: 'Consultor independiente de la Contraloría General del Estado República de Ecuador',
+        foto: '/images/ponentes/pablo_fudim.png',
+        perfil: '/pdfs/datos_ponentes/04.PABLO FUDIM.png',
+        bandera: '/images/argentina.webp'
+    },
+    {
+        nombre: 'Dr. CPC. Luciano Tinoco Palacios',
+        cargo: 'Miembro del Centro Nacional de Investigación de las Ciencias Contables de la JDCCPP',
+        foto: '/images/ponentes/luciano_tinoco.png',
+        perfil: '/pdfs/datos_ponentes/05.LUCIANO TINOCO.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'Mg. CPC. Marco Saldivar García',
+        cargo: 'Presidente del Consejo Directivo del Programa de Inversión Responsable',
+        foto: '/images/ponentes/marco_saldivar.png',
+        perfil: '/pdfs/datos_ponentes/06.MARCO ZALDIVAR.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'L.C.A. Maria Rodriguez Uribe',
+        cargo: 'Directora de Auditoría Forense de Cumplimiento Financiero en Auditoría Superior de la Federación de México',
+        foto: '/images/ponentes/maria_uribe.png',
+        perfil: 'public/pdfs/datos_ponentes/07.MARIA RODRIGUEZ.png',
+        bandera: '/images/mexico.png'
+    },
+    {
+        nombre: 'Dr. Ronny Gutiérrez Castillo',
+        cargo: 'Ejecutivo de Gestión I - Especialista VII  Gerencia Regional de Control de Puno en la Contraloría General de la República',
+        foto: '/images/ponentes/rony_castillo.png',
+        perfil: '/pdfs/datos_ponentes/08.RONNY GUTIERREZ.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'Lic. Franco Portocarrero Estrada',
+        cargo: 'Gerente Senior de Auditoría PWC',
+        foto: '/images/ponentes/franco_estrada.png',
+        perfil: '/pdfs/datos_ponentes/10.FRANCO PORTOCARRERO.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'Dr. CPC. Ismael Lavilla Torres',
+        cargo: 'Jefe del Órgano de Control Institucional de la Autoridad Autónoma de Majes',
+        foto: '/images/ponentes/ismael_torres.png',
+        perfil: '/pdfs/datos_ponentes/09.ISMAEL LAVILLA.png',
+        bandera: '/images/peru.png'
+    },
+    {
+        nombre: 'Mg. Hernán Pablo Casinelli',
+        cargo: 'Presidente del Grupo Latinoamericano de Emisores de Normas de Información Financiera (GLENIF)',
+        foto: '/images/ponentes/hernan_pablo.png',
+        perfil: '/pdfs/datos_ponentes/11.HERNAN CASINELLI.png',
+        bandera: '/images/argentina.webp'
+    },
+    {
+        nombre: 'Mg. CPC. Jorge Maldonado Alarcón',
+        cargo: 'Socio de auditoría DELOITTE',
+        foto: '/images/ponentes/jorge.png',
+        perfil: '/pdfs/datos_ponentes/12.JORGE MALDONADO.png',
+        bandera: '/images/peru.png'
+    },
 ]
 
 
