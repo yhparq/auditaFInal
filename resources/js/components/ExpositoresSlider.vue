@@ -131,7 +131,7 @@ const expositores: Expositor[] = [
     },
     {
         nombre: 'Mg. CPC. Jorge Maldonado Alarcón',
-        cargo: 'Socio de auditoría DELOITTE',
+        cargo: 'Director del Instituto de Auditores Internos del Perú',
         foto: '/images/ponentes/jorge.png',
         perfil: '/pdfs/datos_ponentes/12.JORGE MALDONADO.png',
         bandera: '/images/peru.png'

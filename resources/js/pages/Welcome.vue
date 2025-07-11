@@ -554,7 +554,7 @@
                         <div class="mb-16">
 
                             <p class="text-lg font-semibold text-[#00367e]">Fecha Límite de Recepción:</p>
-                            <p class="text-md font-bold text-gray-800 mb-4">Viernes 20 de junio 2025</p>
+                            <p class="text-md font-bold text-gray-800 mb-4">06 de Julio 2025</p>
                         </div>
 
                         <h3 class="font-semibold text-gray-700 mb-2">Monto de la premiación:</h3>
@@ -770,15 +770,15 @@
 
 
 
-        <section class="bg-[#f9f9f9] py-12 overflow-hidden">
+        <section class="bg-[#FFF] py-12 overflow-hidden">
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold uppercase text-[#00367e]">Auspiciadores</h2>
             </div>
 
             <Carousel class="max-w-7xl mx-auto" v-bind="config">
                 <Slide v-for="(logo, index) in logos" :key="index">
-                    <div class="flex items-center justify-center h-24 py-5 my-1">
-                        <img :src="logo" alt="logo" class="h-14 object-contain" />
+                    <div class="flex items-center justify-center h-30 py-5 my-1">
+                        <img :src="logo" alt="logo" class="h-30 object-contain" />
                     </div>
                 </Slide>
             </Carousel>
