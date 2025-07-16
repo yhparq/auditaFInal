@@ -25,6 +25,12 @@ class PhotoController extends Controller
             ->latest()
             ->paginate(20); // Más fotos por página para la galería pública
 
+        // Agregar URL a cada foto
+        $photos->getCollection()->transform(function ($photo) {
+            $photo->url = asset('storage/' . $photo->file_path);
+            return $photo;
+        });
+
         return Inertia::render('Galeria', [
             'photos' => $photos,
             'filters' => $request->only('search'),
@@ -56,6 +62,13 @@ class PhotoController extends Controller
             })
             ->latest()
             ->paginate(12);
+
+        // Agregar URL a cada foto
+        $photos->getCollection()->transform(function ($photo) {
+            $photo->url = asset('storage/' . $photo->file_path);
+            $photo->file_size = $photo->file_size;
+            return $photo;
+        });
 
         return Inertia::render('Photos/Index', [
             'photos' => $photos,

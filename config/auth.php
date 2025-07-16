@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        // Guard para participantes
+        'participante' => [
+            'driver' => 'session',
+            'provider' => 'participantes',
+        ],
     ],
 
     /*
@@ -63,6 +69,12 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+
+        // Provider para participantes
+        'participantes' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Participante::class, // Ajusta según tu modelo
         ],
 
         // 'users' => [
@@ -94,6 +106,14 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        
+        // Configuración de reset de contraseña para participantes
+        'participantes' => [
+            'provider' => 'participantes',
+            'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
         ],

@@ -9,8 +9,6 @@
                 <p class="text-gray-600 dark:text-gray-400">Gestión completa de todas las fotografías del sistema</p>
             </div>
 
-
-
             <!-- Actions Bar -->
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-8">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -43,125 +41,96 @@
                 </div>
             </div>
 
-            <!-- Tabla de Fotos -->
+            <!-- Lista de Fotos -->
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Lista Completa de Fotos</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Gestión y administración de todas las fotografías</p>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Lista de Fotos</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Visualización de todas las fotografías</p>
                 </div>
 
-                <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Vista Previa</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Nombre del Archivo</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Ruta del Archivo</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tamaño</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Fecha de Subida</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Última Actualización</th>
-                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                            <tr v-for="photo in photos.data" :key="photo.id" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                <!-- Vista Previa -->
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="relative group">
-                                            <img
-                                                :src="photo.url"
-                                                :alt="photo.filename"
-                                                class="w-16 h-16 object-cover rounded-lg border-2 border-gray-200 dark:border-gray-600 hover:border-blue-500 transition-colors cursor-pointer"
-                                                @click="openPreview(photo)"
-                                            />
-                                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 rounded-lg transition-all flex items-center justify-center">
-                                                <svg class="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                                </svg>
-                                            </div>
+                <!-- Lista simple de fotos -->
+                <div class="p-6">
+                    <div v-if="photos.data.length > 0" class="space-y-6">
+                        <div
+                            v-for="photo in photos.data"
+                            :key="photo.id"
+                            class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                        >
+                            <div class="flex items-start space-x-4">
+                                <!-- Imagen -->
+                                <div class="flex-shrink-0">
+                                    <img
+                                        :src="photo.url"
+                                        :alt="photo.filename"
+                                        class="w-20 h-20 object-cover rounded-lg border-2 border-gray-200 dark:border-gray-600"
+                                    />
+                                </div>
+                                
+                                <!-- Información -->
+                                <div class="flex-grow">
+                                    <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                                        {{ photo.filename }}
+                                    </h4>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                        <div>
+                                            <span class="font-medium">Ruta:</span>
+                                            <span class="ml-1">{{ photo.file_path || 'No disponible' }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium">Tamaño:</span>
+                                            <span class="ml-1">{{ formatFileSize(photo.file_size || 0) }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium">Subida:</span>
+                                            <span class="ml-1">{{ formatDate(photo.created_at) }}</span>
+                                        </div>
+                                        <div>
+                                            <span class="font-medium">Actualizada:</span>
+                                            <span class="ml-1">{{ formatDate(photo.updated_at) }}</span>
                                         </div>
                                     </div>
-                                </td>
-                                
-                                <!-- Nombre del Archivo -->
-                                <td class="px-6 py-4">
-                                    <div class="text-sm font-medium text-gray-900 dark:text-white">{{ photo.filename }}</div>
-                                </td>
-                                
-                                <!-- Ruta del Archivo -->
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-500 dark:text-gray-400 max-w-xs">
-                                        <div class="truncate" :title="photo.file_path">{{ photo.file_path }}</div>
-                                    </div>
-                                </td>
-                                
-                                <!-- Tamaño -->
-                                <td class="px-6 py-4">
-                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
-                                        {{ formatFileSize(photo.file_size || 0) }}
-                                    </span>
-                                </td>
-                                
-                                <!-- Fecha de Subida -->
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900 dark:text-white">
-                                        {{ formatDate(photo.created_at) }}
-                                    </div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-400">
-                                        {{ formatTimeAgo(photo.created_at) }}
-                                    </div>
-                                </td>
-                                
-                                <!-- Última Actualización -->
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900 dark:text-white">
-                                        {{ formatDate(photo.updated_at) }}
-                                    </div>
-                                    <div class="text-xs text-gray-500 dark:text-gray-400">
-                                        {{ formatTimeAgo(photo.updated_at) }}
-                                    </div>
-                                </td>
+                                </div>
                                 
                                 <!-- Acciones -->
-                                <td class="px-6 py-4 text-right text-sm font-medium space-x-2">
-                                    <Link
+                                <div class="flex-shrink-0 flex space-x-2">
+                                    <a
                                         :href="route('photos.show', photo.id)"
                                         class="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 transition-colors"
                                     >
                                         Ver
-                                    </Link>
-                                    <Link
+                                    </a>
+                                    <a
                                         :href="route('photos.edit', photo.id)"
                                         class="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 transition-colors"
                                     >
                                         Editar
-                                    </Link>
+                                    </a>
                                     <button
                                         @click="confirmDelete(photo)"
                                         class="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-red-600 hover:bg-red-700 transition-colors"
                                     >
                                         Eliminar
                                     </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Empty State -->
-                <div v-if="photos.data.length === 0" class="text-center py-12">
-                    <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No hay fotos subidas</h3>
-                    <p class="text-gray-500 dark:text-gray-400 mb-4">Cuando subas fotografías aparecerán aquí.</p>
-                    <Link
-                        :href="route('photos.create')"
-                        class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-                    >
-                        Subir Primera Foto
-                    </Link>
+                    <!-- Estado vacío -->
+                    <div v-else class="text-center py-12">
+                        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No hay fotos subidas</h3>
+                        <p class="text-gray-500 dark:text-gray-400 mb-4">Cuando subas fotografías aparecerán aquí.</p>
+                        <Link
+                            :href="route('photos.create')"
+                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                        >
+                            Subir Primera Foto
+                        </Link>
+                    </div>
                 </div>
 
                 <!-- Paginación -->
@@ -250,28 +219,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal de vista previa -->
-        <div v-if="showPreviewModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 overflow-y-auto h-full w-full z-50">
-            <div class="relative min-h-screen flex items-center justify-center p-4">
-                <div class="relative max-w-4xl max-h-full">
-                    <button
-                        @click="showPreviewModal = false"
-                        class="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
-                    >
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
-                    </button>
-                    <img
-                        v-if="previewPhoto"
-                        :src="previewPhoto.url"
-                        :alt="previewPhoto.filename"
-                        class="max-w-full max-h-screen object-contain rounded-lg"
-                    />
-                </div>
-            </div>
-        </div>
     </AppLayout>
 </template>
 
@@ -291,8 +238,6 @@ const form = reactive({
 
 const showDeleteModal = ref(false)
 const photoToDelete = ref(null)
-const showPreviewModal = ref(false)
-const previewPhoto = ref(null)
 
 const breadcrumbs = [
     { title: 'Galería de Fotos', href: '/photos' },
@@ -322,11 +267,6 @@ const deletePhoto = () => {
     }
 }
 
-const openPreview = (photo) => {
-    previewPhoto.value = photo
-    showPreviewModal.value = true
-}
-
 const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('es-ES', {
         year: 'numeric',
@@ -335,46 +275,11 @@ const formatDate = (dateString) => {
     })
 }
 
-const formatTimeAgo = (dateString) => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffInHours = Math.floor((now - date) / (1000 * 60 * 60))
-    
-    if (diffInHours < 1) return 'Hace menos de 1 hora'
-    if (diffInHours < 24) return `Hace ${diffInHours} hora${diffInHours > 1 ? 's' : ''}`
-    
-    const diffInDays = Math.floor(diffInHours / 24)
-    if (diffInDays < 7) return `Hace ${diffInDays} día${diffInDays > 1 ? 's' : ''}`
-    
-    const diffInWeeks = Math.floor(diffInDays / 7)
-    return `Hace ${diffInWeeks} semana${diffInWeeks > 1 ? 's' : ''}`
-}
-
 const formatFileSize = (bytes) => {
     if (bytes === 0) return '0 Bytes'
     const k = 1024
     const sizes = ['Bytes', 'KB', 'MB', 'GB']
     const i = Math.floor(Math.log(bytes) / Math.log(k))
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
-}
-
-const isRecent = (dateString) => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffInDays = Math.floor((now - date) / (1000 * 60 * 60 * 24))
-    return diffInDays <= 7
-}
-
-const isThisWeek = (dateString) => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()))
-    return date >= startOfWeek
-}
-
-const getTotalSize = () => {
-    return props.photos.data.reduce((total, photo) => {
-        return total + (photo.file_size || 0)
-    }, 0)
 }
 </script>

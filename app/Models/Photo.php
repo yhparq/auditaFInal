@@ -27,5 +27,12 @@ class Photo extends Model
         return asset('storage/' . $this->file_path);
     }
 
-
+        /**
+     * Get the photo size if file exists
+     */
+    public function getFileSizeAttribute()
+    {
+        $fullPath = storage_path('app/public/' . $this->file_path);
+        return file_exists($fullPath) ? filesize($fullPath) : 0;
+    }
 }

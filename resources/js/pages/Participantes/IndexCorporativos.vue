@@ -12,8 +12,34 @@ function eliminar(id) {
     }
 }
 
+function toggleEstado(participante) {
+    if (confirm(`¿Deseas ${participante.estado ? 'desactivar' : 'activar'} este participante?`)) {
+        router.patch(`/participantes/${participante.id}/toggle-estado`, {
+            estado: !participante.estado
+        }, {
+            preserveScroll: true,
+            onSuccess: () => {
+                // Actualizar el estado local para feedback inmediato
+                participante.estado = !participante.estado;
+            }
+        });
+    }
+}
+
+function exportarExcel() {
+    if (props.participantes.length === 0) {
+        alert('No hay participantes corporativos para exportar');
+        return;
+    }
+    
+    if (confirm('¿Deseas exportar todos los participantes corporativos a Excel?')) {
+        // Agregar parámetro para exportar solo corporativos
+        window.location.href = '/participantes/export/excel?tipo=corporativo';
+    }
+}
+
 const breadcrumbs = [
-    { title: 'Participantes Individuales', href: '/participantes/individuales' },
+    { title: 'Participantes Corporativos', href: '/participantes/corporativos' },
 ];
 </script>
 
@@ -22,8 +48,30 @@ const breadcrumbs = [
         <div>
             <!-- Header Section -->
             <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Participantes Corporativos</h1>
-                <p class="text-gray-600 dark:text-gray-400">Gestión completa de todos los participantes registrados individualmente</p>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Participantes Corporativos</h1>
+                        <p class="text-gray-600 dark:text-gray-400">Gestión completa de todos los participantes registrados corporativamente</p>
+                    </div>
+                    
+                    <!-- Botón de exportar -->
+                    <div class="mt-4 sm:mt-0">
+                        <button 
+                            @click="exportarExcel"
+                            :disabled="participantes.length === 0"
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-200"
+                            :class="participantes.length === 0 ? 'opacity-50' : 'hover:scale-105'"
+                        >
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            Exportar a Excel
+                            <span class="ml-2 text-xs bg-green-500 text-white px-2 py-1 rounded-full">
+                                {{ participantes.length }}
+                            </span>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- Stats Cards -->
@@ -32,7 +80,7 @@ const breadcrumbs = [
                     <div class="flex items-center">
                         <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
                             <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
                         </div>
                         <div class="ml-4">
@@ -76,15 +124,15 @@ const breadcrumbs = [
 
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
                     <div class="flex items-center">
-                        <div class="p-2 bg-yellow-100 dark:bg-yellow-900 rounded-lg">
-                            <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        <div class="p-2 bg-orange-100 dark:bg-orange-900 rounded-lg">
+                            <svg class="w-6 h-6 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Con Voucher</p>
+                            <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Empresas</p>
                             <p class="text-2xl font-semibold text-gray-900 dark:text-white">
-                                {{ participantes.filter(p => p.foto_voucher).length }}
+                                {{ new Set(participantes.map(p => p.nombre_corporativo).filter(Boolean)).size }}
                             </p>
                         </div>
                     </div>
@@ -94,8 +142,26 @@ const breadcrumbs = [
             <!-- Tabla Completa de Participantes -->
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">Lista Completa de Participantes</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Información detallada de todos los campos</p>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">Lista Completa de Participantes Corporativos</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Información detallada de todos los campos - Click en el estado para activar/desactivar</p>
+                        </div>
+                        
+                        <!-- Botón de exportar alternativo (más pequeño) -->
+                        <div class="mt-3 sm:mt-0">
+                            <button 
+                                @click="exportarExcel"
+                                :disabled="participantes.length === 0"
+                                class="inline-flex items-center px-3 py-2 border border-green-300 shadow-sm text-xs font-medium rounded-md text-green-700 bg-green-50 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed dark:bg-green-900 dark:text-green-300 dark:border-green-700 dark:hover:bg-green-800"
+                            >
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 12l3 3m0 0l3-3m-3 3V9"/>
+                                </svg>
+                                Exportar Excel
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -120,7 +186,10 @@ const breadcrumbs = [
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Voucher</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Comprobante</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">RUC</th>
-                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Estado</th>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                                    Estado
+                                    <span class="block text-xs font-normal text-gray-400 mt-1">(Click para cambiar)</span>
+                                </th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Creado</th>
                                 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actualizado</th>
                                 <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Acciones</th>
@@ -245,17 +314,25 @@ const breadcrumbs = [
                                     <span v-else class="text-gray-400 italic">—</span>
                                 </td>
                                 
-                                <!-- Estado -->
+                                <!-- Estado - CLICKEABLE -->
                                 <td class="px-4 py-3">
-                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
+                                    <button 
+                                        @click="toggleEstado(p)"
+                                        class="inline-flex items-center px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer"
                                         :class="p.estado 
-                                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                                            : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'">
-                                        <svg class="w-1.5 h-1.5 mr-1" :class="p.estado ? 'text-green-400' : 'text-red-400'" fill="currentColor" viewBox="0 0 8 8">
+                                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 hover:bg-green-200 focus:ring-green-500' 
+                                            : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 hover:bg-red-200 focus:ring-red-500'"
+                                        :title="`Click para ${p.estado ? 'desactivar' : 'activar'}`"
+                                    >
+                                        <svg class="w-2 h-2 mr-1" :class="p.estado ? 'text-green-400' : 'text-red-400'" fill="currentColor" viewBox="0 0 8 8">
                                             <circle cx="4" cy="4" r="3"/>
                                         </svg>
                                         {{ p.estado ? 'Activo' : 'Inactivo' }}
-                                    </span>
+                                        <!-- Indicador visual de que es clickeable -->
+                                        <svg class="w-3 h-3 ml-1 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                        </svg>
+                                    </button>
                                 </td>
                                 
                                 <!-- Creado -->
@@ -287,10 +364,10 @@ const breadcrumbs = [
                 <!-- Empty State -->
                 <div v-if="participantes.length === 0" class="text-center py-12">
                     <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                     </svg>
-                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No hay participantes registrados</h3>
-                    <p class="text-gray-500 dark:text-gray-400">Cuando se registren participantes individuales aparecerán aquí.</p>
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">No hay participantes corporativos registrados</h3>
+                    <p class="text-gray-500 dark:text-gray-400">Cuando se registren participantes corporativos aparecerán aquí.</p>
                 </div>
             </div>
         </div>

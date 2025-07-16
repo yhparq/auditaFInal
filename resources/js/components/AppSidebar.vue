@@ -11,7 +11,7 @@ import AppLogo from './AppLogo.vue';
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
-        href: '/dashboard',
+        href: '/admin/dashboard',
         icon: LayoutGrid,
     },
     {
@@ -30,20 +30,16 @@ const mainNavItems: NavItem[] = [
         icon: BookImage,
     },
     {
-        title: 'Jueves 24 de Julio',
-        href: '#',
+        title: 'Cursos Audita',
+        href: '/cursos',
         icon: Calendar1,
     },
     {
-        title: 'Jueves 25 de Julio',
+        title: 'Control de Asistencias',
         href: '#',
         icon: Calendar1,
     },
-    {
-        title: 'Jueves 26 de Julio',
-        href: '#',
-        icon: Calendar1,
-    },
+
 ];
 
 const footerNavItems: NavItem[] = [

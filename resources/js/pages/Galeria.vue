@@ -1,26 +1,18 @@
 <template>
     <AuditaLayout>
-        <!-- Header de la galería -->
-        <section class="bg-gradient-to-br from-[#00367e] to-[#ae1f22] text-white py-16 px-4">
+        <!-- Header de la galería - MÁS PEQUEÑO -->
+        <!-- <section class="bg-gradient-to-br from-[#00367e] to-[#ae1f22] text-white py-8 px-4">
             <div class="max-w-6xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Galería AUDITA 2025</h1>
-                <p class="text-xl mb-8 opacity-90">Revive los mejores momentos del evento</p>
-                
-                <!-- Buscador -->
-                <div class="max-w-md mx-auto">
-                    <div class="relative">
-                        <input
-                            v-model="form.search"
-                            @input="search"
-                            type="text"
-                            placeholder="Buscar fotos..."
-                            class="w-full px-4 py-3 pl-10 text-gray-900 border border-gray-300 rounded-lg focus:ring-2 focus:ring-white focus:border-transparent"
-                        />
-                        <svg class="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                </div>
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Galería AUDITA 2025</h1>
+                <p class="text-lg mb-4 opacity-90">Revive los mejores momentos del evento</p>
+            </div>
+        </section> -->
+
+        <!-- Header de la galería - MÁS PEQUEÑO -->
+        <section class="bg-gradient-to-br from-[#00367e] to-[#ae1f22] text-white py-8 px-4">
+            <div class="max-w-6xl mx-auto text-center">
+                <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Galería AUDITA 2025</h1>
+                <p class="text-lg mb-4 opacity-90">Revive los mejores momentos del evento</p>
             </div>
         </section>
 
@@ -35,40 +27,22 @@
                     </p>
                 </div>
 
-                <!-- Grid de fotos -->
-                <div v-if="photos.data && photos.data.length > 0" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <!-- Galería estilo grid SIMÉTRICO -->
+                <div v-if="photos.data && photos.data.length > 0" class="photo-grid-symmetric">
                     <div
-                        v-for="photo in photos.data"
+                        v-for="(photo, index) in photos.data"
                         :key="photo.id"
-                        class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer bg-white"
+                        class="photo-card cursor-pointer transition-all duration-300 hover:scale-105 hover:z-10"
                         @click="abrirModal(photo)"
                     >
-                        <!-- Imagen -->
-                        <div class="aspect-square bg-gray-200">
-                            <img
-                                :src="photo.url"
-                                :alt="photo.filename"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                loading="lazy"
-                            />
-                        </div>
-                        
-                        <!-- Overlay con información -->
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-opacity duration-300 flex items-end">
-                            <div class="p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                                <p class="font-medium text-sm truncate">{{ photo.filename }}</p>
-                                <p class="text-xs opacity-75">{{ formatDate(photo.created_at) }}</p>
-                            </div>
-                        </div>
-
-                        <!-- Icono de zoom -->
-                        <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div class="bg-black bg-opacity-50 rounded-full p-2">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
-                        </div>
+                        <img
+                            :src="photo.url"
+                            :alt="photo.filename"
+                            class="w-full h-full object-cover rounded-lg"
+                            @error="handleImageError($event, photo)"
+                            @load="handleImageLoad($event, photo)"
+                            loading="lazy"
+                        />
                     </div>
                 </div>
 
@@ -77,15 +51,8 @@
                     <svg class="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                     </svg>
-                    <h3 class="text-2xl font-medium text-gray-900 mb-2">
-                        {{ form.search ? 'No se encontraron fotos' : 'Próximamente' }}
-                    </h3>
-                    <p class="text-gray-500 mb-8">
-                        {{ form.search 
-                            ? `No hay resultados para "${form.search}"` 
-                            : 'Las fotos del evento estarán disponibles aquí.' 
-                        }}
-                    </p>
+                    <h3 class="text-2xl font-medium text-gray-900 mb-2">No hay fotos disponibles</h3>
+                    <p class="text-gray-500 mb-8">Las fotos del evento estarán disponibles aquí.</p>
                     <a 
                         href="/" 
                         class="inline-flex items-center px-6 py-3 bg-[#00367e] hover:bg-[#ae1f22] text-white font-medium rounded-lg transition-colors"
@@ -117,74 +84,63 @@
             </div>
         </section>
 
-        <!-- Modal para vista completa -->
-        <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
-            <div class="relative max-w-6xl max-h-full w-full">
-                <!-- Botones de navegación y cierre -->
-                <div class="absolute top-4 right-4 flex items-center space-x-2 z-10">
-                    <!-- Descargar -->
-                    <a
-                        v-if="selectedPhoto"
-                        :href="selectedPhoto.url"
-                        download
-                        class="bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-3 rounded-full transition-colors"
-                        title="Descargar"
-                    >
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                    </a>
-                    <!-- Cerrar -->
-                    <button
-                        @click="cerrarModal"
-                        class="bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-3 rounded-full transition-colors"
-                        title="Cerrar"
-                    >
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-
-                <!-- Navegación izquierda -->
-                <button
-                    v-if="currentIndex > 0"
-                    @click="navegarFoto(-1)"
-                    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-3 rounded-full transition-colors z-10"
+        <!-- Modal para vista completa - ESTILO INSTAGRAM -->
+        <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-4" @click="cerrarModal">
+            <div class="relative max-w-5xl w-full h-full flex items-center justify-center" @click.stop>
+                <!-- Botón cerrar -->
+                <button 
+                    @click="cerrarModal"
+                    class="absolute top-4 right-4 z-30 text-white hover:text-red-400 transition-colors"
                 >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
 
-                <!-- Navegación derecha -->
-                <button
+                <!-- Navegación anterior -->
+                <button 
+                    v-if="currentIndex > 0"
+                    @click="navegarFoto(-1)"
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-blue-300 transition-colors z-30 bg-black bg-opacity-30 rounded-full p-3"
+                >
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+
+                <!-- Navegación siguiente -->
+                <button 
                     v-if="currentIndex < photos.data.length - 1"
                     @click="navegarFoto(1)"
-                    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-3 rounded-full transition-colors z-10"
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-blue-300 transition-colors z-30 bg-black bg-opacity-30 rounded-full p-3"
                 >
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path>
                     </svg>
                 </button>
 
                 <!-- Imagen principal -->
-                <div class="flex items-center justify-center h-full">
+                <div class="flex flex-col max-h-full">
                     <img
-                        v-if="selectedPhoto"
                         :src="selectedPhoto.url"
                         :alt="selectedPhoto.filename"
-                        class="max-w-full max-h-full object-contain rounded-lg"
+                        class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
                     />
-                </div>
-
-                <!-- Información de la foto -->
-                <div class="absolute bottom-4 left-4 right-4 text-white">
-                    <div class="bg-black bg-opacity-50 rounded-lg p-4">
-                        <h3 class="font-medium text-lg mb-1">{{ selectedPhoto?.filename }}</h3>
-                        <div class="flex items-center justify-between text-sm opacity-75">
-                            <span>{{ formatDate(selectedPhoto?.created_at) }}</span>
-                            <span>{{ currentIndex + 1 }} de {{ photos.data?.length }}</span>
+                    
+                    <!-- Info bar en la parte inferior -->
+                    <div class="mt-4 bg-gradient-to-r from-black/80 to-gray-900/80 backdrop-blur-sm text-white p-4 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-medium text-white">{{ selectedPhoto.filename }}</h3>
+                                <p class="text-gray-300 text-sm">
+                                    {{ formatDate(selectedPhoto.created_at) }}
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="text-blue-300 text-sm font-medium bg-blue-900/30 px-3 py-1 rounded-full">
+                                    {{ currentIndex + 1 }} / {{ photos.data.length }}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -194,38 +150,49 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { router } from '@inertiajs/vue3'
+import { ref } from 'vue'
 import AuditaLayout from '@/layouts/AuditaLayout.vue'
 
 // Props
 const props = defineProps({
-    photos: Object,
-    filters: Object
+    photos: Object
 })
 
 // Reactive data
-const form = reactive({
-    search: props.filters?.search || ''
-})
-
 const showModal = ref(false)
 const selectedPhoto = ref(null)
 const currentIndex = ref(0)
 
 // Methods
-const search = () => {
-    router.get(route('gallery.index'), form, {
-        preserveState: true,
-        preserveScroll: true
-    })
-}
-
 const abrirModal = (photo) => {
     selectedPhoto.value = photo
     currentIndex.value = props.photos.data.findIndex(p => p.id === photo.id)
     showModal.value = true
     document.body.style.overflow = 'hidden'
+}
+
+const handleImageError = (event, photo) => {
+    console.error('Error al cargar imagen:', {
+        url: event.target.src,
+        photo: photo,
+        file_path: photo.file_path
+    })
+    // Imagen placeholder simple
+    event.target.style.display = 'none'
+    event.target.parentElement.innerHTML = `
+        <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-lg">
+            <span class="text-gray-500 text-sm">Imagen no disponible</span>
+        </div>
+    `
+}
+
+const handleImageLoad = (event, photo) => {
+    console.log('Imagen cargada correctamente:', {
+        url: event.target.src,
+        photo: photo,
+        naturalWidth: event.target.naturalWidth,
+        naturalHeight: event.target.naturalHeight
+    })
 }
 
 const cerrarModal = () => {
@@ -269,26 +236,76 @@ document.addEventListener('keydown', handleKeydown)
 </script>
 
 <style scoped>
-/* Animaciones suaves */
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+/* Grid SIMÉTRICO para fotos */
+.photo-grid-symmetric {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    grid-auto-rows: 250px;
 }
 
-/* Efectos hover mejorados */
-.group:hover .group-hover\:scale-105 {
-    transform: scale(1.05);
+.photo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    background: white;
+    border: 3px solid #e5e7eb; /* Borde gris claro */
 }
 
-.group:hover .group-hover\:translate-y-0 {
-    transform: translateY(0);
+/* Responsive para grid simétrico */
+@media (max-width: 1024px) {
+    .photo-grid-symmetric {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        grid-auto-rows: 200px;
+    }
 }
 
-.group:hover .group-hover\:opacity-100 {
-    opacity: 1;
+@media (max-width: 768px) {
+    .photo-grid-symmetric {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        grid-auto-rows: 180px;
+    }
 }
 
-.group:hover .group-hover\:bg-opacity-60 {
-    background-opacity: 0.6;
+@media (max-width: 640px) {
+    .photo-grid-symmetric {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        grid-auto-rows: 160px;
+    }
+}
+
+/* Efecto hover mejorado */
+.photo-card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    border-color: #3b82f6; /* Borde azul al hover */
+    z-index: 10;
+}
+
+/* Asegurar que las imágenes llenen completamente su contenedor */
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Backdrop blur mejorado */
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-md {
+    backdrop-filter: blur(8px);
 }
 </style>

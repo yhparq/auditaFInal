@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ParticipantesCorporativosExport;
+use App\Exports\ParticipantesExport;
 use App\Models\Participante;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class ParticipanteController extends Controller
 {
@@ -38,6 +40,41 @@ class ParticipanteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store1(Request $request)
+    // {
+    //     $data = $request->validate([
+    //         'nombres' => 'required|string|max:255',
+    //         'apellidos' => 'required|string|max:255',
+    //         'dni' => 'required|string|size:8|unique:participantes,dni',
+    //         'correo' => 'required|email|unique:participantes,correo',
+    //         'celular' => 'required|string|max:15',
+    //         'colegio_departamental' => 'nullable|string|max:255',
+    //         'departamento' => 'required|string|max:100',
+    //         'provincia' => 'required|string|max:100',
+    //         'distrito' => 'required|string|max:100',
+    //         'direccion_actual' => 'nullable|string|max:255',
+    //         'tipo_participante' => 'required|in:individual,corporativo',
+    //         'tipo_participante_categoria' => 'required|in:pleno,observador,estudiante',
+    //         'modalidad_participacion' => 'required|in:presencial,virtual',
+    //         'codigo_pago' => 'required|string|max:100',
+    //         'foto_voucher' => 'nullable|image|max:2048',
+    //         'comprobante' => 'required|in:boleta,factura',
+    //         'numero_ruc' => 'nullable|required_if:comprobante,factura|string|size:11',
+    //         'nombre_corporativo' => 'nullable|required_if:comprobante,factura|string|max:255',
+    //         'estado' => 'required|boolean',
+    //     ]);
+
+    //     if ($request->hasFile('foto_voucher')) {
+    //         $data['foto_voucher'] = $request->file('foto_voucher')->store('vouchers', 'public');
+    //     }
+
+    //     Participante::create($data);
+
+    //     // return redirect('/registro')->with('success', 'Participante registrado correctamente.');
+    //     return redirect()->route('registro.seleccion')->with('success', '¡Registro exitoso! Ya formas parte de AUDITA 2025. Te esperamos en la hermosa ciudad del lago más alto del mundo.');
+    // }
+
+
     public function store1(Request $request)
     {
         $data = $request->validate([
@@ -58,7 +95,8 @@ class ParticipanteController extends Controller
             'foto_voucher' => 'nullable|image|max:2048',
             'comprobante' => 'required|in:boleta,factura',
             'numero_ruc' => 'nullable|required_if:comprobante,factura|string|size:11',
-            'nombre_corporativo' => 'nullable|required_if:comprobante,factura|string|max:255',
+            // ✅ CAMBIO: Ahora es nullable - no obligatorio para individuales
+            'nombre_corporativo' => 'nullable|string|max:255',
             'estado' => 'required|boolean',
         ]);
 
@@ -68,12 +106,9 @@ class ParticipanteController extends Controller
 
         Participante::create($data);
 
-        // return redirect('/registro')->with('success', 'Participante registrado correctamente.');
         return redirect()->route('registro.seleccion')->with('success', '¡Registro exitoso! Ya formas parte de AUDITA 2025. Te esperamos en la hermosa ciudad del lago más alto del mundo.');
-
-
-
     }
+
 
     public function store(Request $request)
     {
@@ -119,7 +154,6 @@ class ParticipanteController extends Controller
         // return redirect()->route('registro.seleccion')->with('success', 'Participante registrado correctamente.');
 
         return redirect()->route('registro.seleccion')->with('success', '¡Registro exitoso! Ya formas parte de AUDITA 2025. Te esperamos en la hermosa ciudad del lago más alto del mundo.');
-
     }
 
     /**
@@ -192,4 +226,40 @@ class ParticipanteController extends Controller
 
         return redirect()->route('participantes.index')->with('success', 'Participante eliminado correctamente.');
     }
+
+    public function toggleEstado(Request $request, Participante $participante)
+    {
+        $request->validate([
+            'estado' => 'required|boolean'
+        ]);
+
+        $participante->update([
+            'estado' => $request->estado
+        ]);
+
+        $mensaje = $request->estado ? 'Participante activado correctamente' : 'Participante desactivado correctamente';
+
+        return back()->with('success', $mensaje);
+    }
+
+    public function exportExcel()
+{
+    $filename = 'participantes_audita_2025_' . now()->format('Y-m-d_H-i-s') . '.xlsx';
+    
+    return Excel::download(new ParticipantesExport, $filename);
+}
+
+public function exportCorporativosExcel()
+{
+    // Filtrar solo participantes corporativos (que tengan nombre_corporativo)
+    $participantes = Participante::whereNotNull('nombre_corporativo')
+                                ->orWhere('nombre_corporativo', '!=', '')
+                                ->get();
+    
+    // Generar el archivo Excel
+    return Excel::download(
+        new ParticipantesCorporativosExport($participantes), 
+        'participantes-corporativos-' . date('Y-m-d') . '.xlsx'
+    );
+}
 }
