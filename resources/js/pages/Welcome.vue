@@ -799,7 +799,7 @@
             <Carousel class="max-w-7xl mx-auto" v-bind="config">
                 <Slide v-for="(logo, index) in logos" :key="index">
                     <div class="flex items-center justify-center h-30 py-5 my-1">
-                        <img :src="logo" alt="logo" class="h-30 object-contain" />
+                        <img :src="logo" alt="logo" class="h-25 object-contain" />
                     </div>
                 </Slide>
             </Carousel>
@@ -1115,11 +1115,11 @@ onBeforeUnmount(() => {
 
 const logos = [
     '/images/logo6.png',
-    '/images/logo.png',
     '/images/logo2.png',
+    '/images/logo.png',
+    '/images/logo3.png',
     '/images/logo7.png',
     // '/images/logo4.png',
-    '/images/logo3.png',
     '/images/logo5.png',
     '/images/logo8.jpeg',
     '/images/logo9.png',
@@ -1127,6 +1127,8 @@ const logos = [
     '/images/logo11.png',
     '/images/logo12.jpg',
     '/images/logo13.jpg',
+    '/images/logo15.png',
+    '/images/logo16.png',
 ]
 
 

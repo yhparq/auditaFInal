@@ -31,7 +31,7 @@ function exportarExcel() {
         alert('No hay participantes para exportar');
         return;
     }
-    
+
     if (confirm('¿Deseas exportar todos los participantes a Excel?')) {
         // Crear un enlace temporal para descargar
         window.location.href = '/participantes/export/excel';
@@ -53,10 +53,10 @@ const breadcrumbs = [
                         <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Participantes Individuales</h1>
                         <p class="text-gray-600 dark:text-gray-400">Gestión completa de todos los participantes registrados individualmente</p>
                     </div>
-                    
+
                     <!-- Botón de exportar -->
                     <div class="mt-4 sm:mt-0">
-                        <button 
+                        <button
                             @click="exportarExcel"
                             :disabled="participantes.length === 0"
                             class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-200"
@@ -89,7 +89,7 @@ const breadcrumbs = [
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
                     <div class="flex items-center">
                         <div class="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
@@ -147,10 +147,10 @@ const breadcrumbs = [
                             <h3 class="text-lg font-medium text-gray-900 dark:text-white">Lista Completa de Participantes</h3>
                             <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Información detallada de todos los campos - Click en el estado para activar/desactivar</p>
                         </div>
-                        
+
                         <!-- Botón de exportar alternativo (más pequeño) -->
                         <div class="mt-3 sm:mt-0">
-                            <button 
+                            <button
                                 @click="exportarExcel"
                                 :disabled="participantes.length === 0"
                                 class="inline-flex items-center px-3 py-2 border border-green-300 shadow-sm text-xs font-medium rounded-md text-green-700 bg-green-50 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed dark:bg-green-900 dark:text-green-300 dark:border-green-700 dark:hover:bg-green-800"
@@ -199,67 +199,67 @@ const breadcrumbs = [
                             <tr v-for="p in participantes" :key="p.id" class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                                 <!-- Nombres -->
                                 <td class="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{{ p.nombres }}</td>
-                                
+
                                 <!-- Apellidos -->
                                 <td class="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">{{ p.apellidos }}</td>
-                                
+
                                 <!-- DNI -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                                         {{ p.dni }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- Correo -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white max-w-xs">
                                     <div class="truncate" :title="p.correo">{{ p.correo || '—' }}</div>
                                 </td>
-                                
+
                                 <!-- Celular -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                     {{ p.celular || '—' }}
                                 </td>
-                                
+
                                 <!-- Colegio Departamental -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white max-w-xs">
                                     <div class="truncate" :title="p.colegio_departamental">{{ p.colegio_departamental || '—' }}</div>
                                 </td>
-                                
+
                                 <!-- Departamento -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">{{ p.departamento }}</td>
-                                
+
                                 <!-- Provincia -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">{{ p.provincia }}</td>
-                                
+
                                 <!-- Distrito -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">{{ p.distrito }}</td>
-                                
+
                                 <!-- Dirección -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white max-w-xs">
                                     <div class="truncate" :title="p.direccion_actual">{{ p.direccion_actual }}</div>
                                 </td>
-                                
+
                                 <!-- Tipo Participante -->
                                 <td class="px-4 py-3">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                                         {{ p.tipo_participante || '—' }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- Categoría -->
                                 <td class="px-4 py-3">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                                         {{ p.tipo_participante_categoria || '—' }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- Modalidad -->
                                 <td class="px-4 py-3">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
                                         {{ p.modalidad_participacion || '—' }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- Corporativo -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white max-w-xs">
                                     <div v-if="p.nombre_corporativo" class="truncate" :title="p.nombre_corporativo">
@@ -269,14 +269,14 @@ const breadcrumbs = [
                                     </div>
                                     <span v-else class="text-gray-400 italic">—</span>
                                 </td>
-                                
+
                                 <!-- Código Pago -->
                                 <td class="px-4 py-3">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
                                         {{ p.codigo_pago }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- Voucher -->
                                 <td class="px-4 py-3">
                                     <div v-if="p.foto_voucher" class="flex items-center">
@@ -298,14 +298,14 @@ const breadcrumbs = [
                                         </div>
                                     </div>
                                 </td>
-                                
+
                                 <!-- Comprobante -->
                                 <td class="px-4 py-3">
                                     <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
                                         {{ p.comprobante }}
                                     </span>
                                 </td>
-                                
+
                                 <!-- RUC -->
                                 <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                     <span v-if="p.numero_ruc" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
@@ -313,14 +313,14 @@ const breadcrumbs = [
                                     </span>
                                     <span v-else class="text-gray-400 italic">—</span>
                                 </td>
-                                
+
                                 <!-- Estado - CLICKEABLE -->
                                 <td class="px-4 py-3">
-                                    <button 
+                                    <button
                                         @click="toggleEstado(p)"
                                         class="inline-flex items-center px-3 py-2 rounded-full text-xs font-medium transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer"
-                                        :class="p.estado 
-                                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 hover:bg-green-200 focus:ring-green-500' 
+                                        :class="p.estado
+                                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 hover:bg-green-200 focus:ring-green-500'
                                             : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 hover:bg-red-200 focus:ring-red-500'"
                                         :title="`Click para ${p.estado ? 'desactivar' : 'activar'}`"
                                     >
@@ -334,17 +334,17 @@ const breadcrumbs = [
                                         </svg>
                                     </button>
                                 </td>
-                                
+
                                 <!-- Creado -->
                                 <td class="px-4 py-3 text-xs text-gray-500 dark:text-gray-400">
                                     {{ new Date(p.created_at).toLocaleDateString('es-PE') }}
                                 </td>
-                                
+
                                 <!-- Actualizado -->
                                 <td class="px-4 py-3 text-xs text-gray-500 dark:text-gray-400">
                                     {{ new Date(p.updated_at).toLocaleDateString('es-PE') }}
                                 </td>
-                                
+
                                 <!-- Acciones -->
                                 <td class="px-4 py-3 text-right text-sm font-medium space-x-1">
                                     <Link :href="`/participantes/${p.id}/edit`"
