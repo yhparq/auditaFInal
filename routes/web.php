@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\AulaVirtualController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\ParticipanteController;
@@ -30,10 +31,10 @@ Route::get('/galeria/{photo}', [PhotoController::class, 'publicShow'])->name('ga
 Route::prefix('aula-virtual')->group(function () {
     // Ruta principal - mostrar login (pública)
     Route::get('/', [AulaVirtualController::class, 'showLogin'])->name('aula-virtual.login');
-    
+
     // Procesar login (pública)
     Route::post('/login', [AulaVirtualController::class, 'login'])->name('aula-virtual.login.post');
-    
+
     // Rutas protegidas - requieren autenticación
     Route::middleware('auth:participante')->group(function () {
         Route::get('/dashboard', [AulaVirtualController::class, 'dashboard'])->name('aula-virtual.dashboard');
@@ -41,7 +42,7 @@ Route::prefix('aula-virtual')->group(function () {
         Route::get('/descargar-material/{curso}', [AulaVirtualController::class, 'descargarMaterial'])->name('aula-virtual.descargar-material');
         Route::post('/acceder-reunion/{curso}', [AulaVirtualController::class, 'accederReunion'])->name('aula-virtual.acceder-reunion');
         Route::get('/debug', [AulaVirtualController::class, 'debug'])->name('aula-virtual.debug');
-        
+
         // Logout
         Route::post('/logout', [AulaVirtualController::class, 'logout'])->name('aula-virtual.logout');
     });
@@ -66,7 +67,9 @@ Route::get('/api/dni/{dni}', [DniController::class, 'buscar'])->name('buscar.dni
 // Dashboard para administradores/usuarios del sistema (NO participantes)
 Route::get('/admin/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // Participantes individuales
@@ -81,14 +84,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Participantes corporativos
     Route::get('/participantes/corporativos', [ParticipanteController::class, 'indexCoporativos'])->name('participantes.corporativos');
 
-Route::get('/participantes/export/excel', [ParticipanteController::class, 'exportExcel'])
-    ->name('participantes.export.excel');
+    Route::get('/participantes/export/excel', [ParticipanteController::class, 'exportExcel'])->name('participantes.export.excel');
 
-    Route::get('/participantes/corporativos/export/excel', [ParticipanteController::class, 'exportCorporativosExcel'])
-    ->name('participantes.corporativos.export.excel');
+    Route::get('/participantes/corporativos/export/excel', [ParticipanteController::class, 'exportCorporativosExcel'])->name('participantes.corporativos.export.excel');
 
     Route::resource('/photos', PhotoController::class);
     Route::resource('/cursos', CursoController::class);
+    // Route::resource('/asistencias', AsistenciaController::class);
+    // Route::post('/asistencias/verificar', [AsistenciaController::class, 'verificar']);
+    // Route::get('/asistencias/hoy', [AsistenciaController::class, 'hoy']);
+    // Route::get('/asistencias/exportar', [AsistenciaController::class, 'exportar'])->name('asistencias.exportar');
+
+    // Rutas individuales
+    Route::get('/asistencias', [AsistenciaController::class, 'index'])->name('asistencias.index');
+    Route::post('/asistencias/verificar', [AsistenciaController::class, 'verificar']);
+    Route::get('/asistencias/hoy', [AsistenciaController::class, 'hoy']);
+    Route::get('/asistencias/exportar', [AsistenciaController::class, 'exportar']);
 });
 
 // ========================================

@@ -2,12 +2,33 @@
   <div class="min-h-screen bg-gray-50 flex flex-col">
     <!-- Header -->
     <header class="bg-gradient-to-r from-blue-800 to-blue-900 shadow-lg">
+<!-- AÑADIR ESTE AVISO AQUÍ -->
+<div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <div class="flex items-center justify-center space-x-3">
+      <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
+      </svg>
+      <p class="text-sm md:text-base font-medium text-center">
+        📢 <strong>Importante:</strong> Las ponencias se realizarán por <strong>Zoom</strong>.
+        Es necesario tener la aplicación descargada e instalada en tu dispositivo.
+      </p>
+      <a
+        href="https://zoom.us/download"
+        target="_blank"
+        class="ml-2 bg-white text-orange-600 px-3 py-1 rounded-full text-xs font-bold hover:bg-orange-50 transition-colors duration-200 flex-shrink-0"
+      >
+        Descargar Zoom
+      </a>
+    </div>
+  </div>
+</div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
           <div class="flex items-center space-x-4">
-            <img 
-              src="/images/logo1.png" 
-              alt="Audita 2025" 
+            <img
+              src="/images/logo1.png"
+              alt="Audita 2025"
               class="h-16 w-auto"
             />
             <span class="text-blue-200 text-sm hidden md:block">|</span>
@@ -15,7 +36,7 @@
           </div>
           <div class="flex items-center space-x-4">
             <span class="text-white text-sm md:text-base">{{ participante.nombres }} {{ participante.apellidos }}</span>
-            <button 
+            <button
               @click="logout"
               :disabled="logoutForm.processing"
               class="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition-colors duration-200 text-sm font-medium disabled:opacity-50"
@@ -56,8 +77,8 @@
                 <div class="flex-shrink-0">
                   <div :class="[
                     'w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300',
-                    fechaSeleccionada === fecha.valor 
-                      ? 'bg-blue-500 text-white' 
+                    fechaSeleccionada === fecha.valor
+                      ? 'bg-blue-500 text-white'
                       : 'bg-gray-200 text-gray-600 group-hover:bg-blue-200'
                   ]">
                     {{ fecha.dia }}
@@ -75,11 +96,11 @@
               </div>
             </button>
           </div>
-          
+
           <!-- Enlace a página web de Audita -->
           <div class="p-4 border-t border-gray-200">
-            <a 
-              href="https://audita2025ccppuno.org.pe" 
+            <a
+              href="https://audita2025ccppuno.org.pe"
               target="_blank"
               class="w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
             >
@@ -91,7 +112,7 @@
           </div>
           <!-- Enlace a galería de fotos -->
           <div class="p-4 border-t border-gray-200">
-            <a 
+            <a
               href="/galeria"
               class="w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg"
             >
@@ -137,8 +158,8 @@
                 </svg>
                 <h3 class="mt-2 text-sm font-medium text-gray-900">Error al cargar cursos</h3>
                 <p class="mt-1 text-sm text-gray-500">{{ error }}</p>
-                <button 
-                  @click="cargarCursos" 
+                <button
+                  @click="cargarCursos"
                   class="mt-3 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200 text-sm"
                 >
                   Intentar de nuevo
@@ -156,7 +177,7 @@
 
               <!-- Courses Grid -->
               <div v-else class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div 
+                <div
                   v-for="curso in cursos"
                   :key="curso.id"
                   class="bg-gradient-to-br from-white to-gray-50 rounded-xl border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:border-blue-300"
@@ -234,16 +255,16 @@
             Auditoría y ética en la era digital: prevención de la corrupción con tecnología y transparencia
             <span class="text-lg text-orange-300 font-serif">"</span>
           </blockquote>
-          
+
           <!-- Línea decorativa -->
           <div class="w-16 h-0.5 bg-orange-300 mx-auto mb-4"></div>
-          
+
           <!-- Copyright y enlaces -->
           <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6 text-xs text-blue-200">
             <p>© 2025 AUDITA - Colegio de Contadores Públicos de Puno</p>
             <span class="hidden md:block">|</span>
-            <a 
-              href="https://audita2025ccppuno.org.pe" 
+            <a
+              href="https://audita2025ccppuno.org.pe"
               target="_blank"
               class="hover:text-orange-300 transition-colors duration-200"
             >
@@ -316,9 +337,9 @@ const fechasFormateadas = computed(() => {
     return []
   }
 
-  const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 
+  const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
                  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-  
+
   return props.fechasDisponibles.map(fecha => {
     const date = new Date(fecha + 'T00:00:00') // Evitar problemas de zona horaria
     return {
@@ -348,10 +369,10 @@ const cargarCursos = async () => {
   }
 
   console.log('Cargando cursos para fecha:', fechaSeleccionada.value)
-  
+
   cargando.value = true
   error.value = null
-  
+
   try {
     const response = await fetch(route('aula-virtual.cursos-por-fecha') + '?' + new URLSearchParams({
       fecha: fechaSeleccionada.value
@@ -371,14 +392,14 @@ const cargarCursos = async () => {
 
     const data = await response.json()
     console.log('Respuesta del servidor:', data)
-    
+
     if (data.error) {
       throw new Error(data.message || 'Error del servidor')
     }
-    
+
     cursos.value = data.cursos || []
     console.log('Cursos cargados:', cursos.value.length)
-    
+
   } catch (err) {
     console.error('Error al cargar cursos:', err)
     error.value = err.message || 'Error al cargar los cursos'
@@ -406,34 +427,15 @@ const accederReunion = async (curso) => {
     return
   }
 
-  try {
-    const url = route ? route('aula-virtual.acceder-reunion', curso.id) : `/aula-virtual/acceder-reunion/${curso.id}`
-    
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-      }
-    })
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      throw new Error(errorData.error || 'Error al acceder a la reunión')
-    }
-
-    const data = await response.json()
-    // Abrir link de reunión en nueva ventana
-    window.open(data.link_reunion, '_blank')
+  // Simplemente abrir el link directo
+  if (curso.link_reunion) {
+    window.open(curso.link_reunion, '_blank')
     mostrarNotificacion('Accediendo a la reunión...', 'success')
-    
-  } catch (error) {
-    console.error('Error al acceder a reunión:', error)
-    mostrarNotificacion(error.message, 'error')
+  } else {
+    mostrarNotificacion('Link de reunión no disponible', 'error')
   }
 }
+
 
 const getEstadoBadgeClass = (estado) => {
   const classes = {

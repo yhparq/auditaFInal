@@ -36,7 +36,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Control de Asistencias',
-        href: '#',
+        href: '/asistencias',
         icon: Calendar1,
     },
 
